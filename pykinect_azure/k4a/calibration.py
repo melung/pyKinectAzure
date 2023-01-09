@@ -38,13 +38,9 @@ class Calibration:
 
 	def get_matrix(self, camera="color"):
 		if camera == "color":
-			return [[self.color_params.fx,0,self.color_params.cx],
-			        [0,self.color_params.fy,self.color_params.cy],
-			        [0,0,1]]
+			return [[self.color_params.fx,0,self.color_params.cx], [0,self.color_params.fy,self.color_params.cy], [0,0,1]]
 		elif camera == "depth":
-			return [[self.depth_params.fx,0,self.depth_params.cx],
-			        [0,self.depth_params.fy,self.depth_params.cy],
-			        [0,0,1]]
+			return [[self.depth_params.fx,0,self.depth_params.cx], [0,self.depth_params.fy,self.depth_params.cy], [0,0,1]]
 
 
 	def is_valid(self):

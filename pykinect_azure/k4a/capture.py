@@ -2,6 +2,7 @@ import cv2
 
 from pykinect_azure.k4a import _k4a
 from pykinect_azure.k4a.image import Image
+from pykinect_azure.k4a.calibration import Calibration
 from pykinect_azure.k4a.transformation import Transformation
 from pykinect_azure.utils.postProcessing import smooth_depth_image
 
@@ -37,8 +38,9 @@ class Capture:
 
         handle = _k4a.k4a_capture_t
         _k4a.VERIFY(Capture._k4a.k4a_capture_create(handle), "Create capture failed!")
+        cal_handle = Calibration._handle
 
-        return Capture(handle)
+        return Capture(handle,cal_handle)
 
     def get_color_image_object(self):
 

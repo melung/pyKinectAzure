@@ -2,28 +2,28 @@ import ctypes
 
 # K4A_DECLARE_HANDLE(k4a_device_t);
 class _handle_k4a_device_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_device_t = ctypes.POINTER(_handle_k4a_device_t)
 
 # K4A_DECLARE_HANDLE(k4a_capture_t);
 class _handle_k4a_capture_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_capture_t = ctypes.POINTER(_handle_k4a_capture_t)
 
 # K4A_DECLARE_HANDLE(k4a_image_t);
 class _handle_k4a_image_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_image_t = ctypes.POINTER(_handle_k4a_image_t)
 
 # K4A_DECLARE_HANDLE(k4a_transformation_t);
 class _handle_k4a_transformation_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_transformation_t = ctypes.POINTER(_handle_k4a_transformation_t)
@@ -283,6 +283,9 @@ class _xy(ctypes.Structure):
 	]
 
 	def __iter__(self):
+		return self
+
+	def __next__(self):
 		return {'x':self.x, 'y':self.y}
 
 
@@ -293,8 +296,11 @@ class k4a_float2_t(ctypes.Union):
 	]
 
 	def __iter__(self):
+		return self
+
+	def __next__(self):
 		xy = self.xy.__iter__()
-		xy.update({'v':[v for v in self.v]})
+		xy.update({'v': [v for v in self.v]})
 		return xy
 
 class _xyz(ctypes.Structure):
@@ -305,8 +311,10 @@ class _xyz(ctypes.Structure):
 	]
 
 	def __iter__(self):
-		return {'x':self.x, 'y':self.y, 'z':self.z}
+		return self
 
+	def __next__(self):
+		return {'x':self.x, 'y':self.y, 'z':self.z}
 
 class k4a_float3_t(ctypes.Union):
 	_fields_= [

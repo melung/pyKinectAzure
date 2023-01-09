@@ -2,14 +2,14 @@ import ctypes
 
 # K4A_DECLARE_HANDLE(k4a_record_t);
 class _handle_k4a_record_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_record_t = ctypes.POINTER(_handle_k4a_record_t)
 
 # K4A_DECLARE_HANDLE(k4a_playback_t);
 class _handle_k4a_playback_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_playback_t = ctypes.POINTER(_handle_k4a_playback_t)
@@ -17,7 +17,7 @@ k4a_playback_t = ctypes.POINTER(_handle_k4a_playback_t)
 
 # K4A_DECLARE_HANDLE(k4a_playback_data_block_t);
 class _handle_k4a_playback_data_block_t(ctypes.Structure):
-	 _fields_= [
+	_fields_= [
 		("_rsvd", ctypes.c_size_t),
 	]
 k4a_playback_data_block_t = ctypes.POINTER(_handle_k4a_playback_data_block_t)
