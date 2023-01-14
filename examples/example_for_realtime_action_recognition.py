@@ -8,12 +8,15 @@ from mlsocket import MLSocket
 import socket
 
 num_source = 2
-ip = "169.254.164.143"
-send_port = 5555
-vis = 1
+#master_ip = "169.254.164.143"
+master_ip = "192.168.0.5"
 
-end_port = 9999
+#my_ip = "169.254.164.143"
+my_ip = "192.168.0.5"
 
+send_port = 1144
+vis = True
+stop_receive_port = 4444
 
 if __name__ == "__main__":
     pykinect.initialize_libraries(track_body=True)
@@ -52,6 +55,7 @@ if __name__ == "__main__":
     while True:
         start_t = timeit.default_timer()
 
+        print('test')
         # Get capture
         for ii in range(num_source):
             locals()[f"capture_{ii}"] = locals()[f"device_{ii}"].update()
