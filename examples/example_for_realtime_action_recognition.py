@@ -8,7 +8,7 @@ from mlsocket import MLSocket
 import socket
 
 num_source = 2
-ip = "192.168.0.5"
+ip = "169.254.164.143"
 send_port = 5555
 vis = 1
 
@@ -42,9 +42,11 @@ if __name__ == "__main__":
         locals()[f"joint_{ii}"] = np.zeros((27 * 4,))
 
     print("Wait")
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind(('', 12345))
-    m = s.recvfrom(1024)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('169.254.164.144', 12347))
+    s.listen(0)
+    c, addr = s.accept()
+    m = c.recvfrom(1024)
     print(m)
     k = 0
     while True:

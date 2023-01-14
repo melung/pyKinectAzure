@@ -11,7 +11,7 @@ from multiprocessing import shared_memory
 
 
 num_source = 2
-ip = "192.168.0.5"
+ip = "169.254.164.143"
 send_port = 5555
 vis = 1
 
@@ -58,9 +58,16 @@ if __name__ == "__main__":
         while True:
             print("Last action number is " + str(last_action) +action_list[last_action])
             print("Waiting Action")
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.bind(('', 12345))
-            m = s.recvfrom(1024)
+            # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            # s.bind(('', 12345))
+            # m = s.recvfrom(1024)
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            s.bind(('169.254.164.144', 12347))
+            s.listen(0)
+            c, addr = s.accept()
+            m = c.recvfrom(1024)
+            print(m)
             action_num = int(m[0].decode())
             print("Selected Action : " + str(action_num) +" " +action_list[action_num])
             last_action = action_num
@@ -85,9 +92,16 @@ if __name__ == "__main__":
                 locals()[f"joint_{ii}"] = np.zeros((27 * 4,))
 
             print("###############All Kinect Ready Waiting the Start Signal##################")
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.bind(('', 12345))
-            m = s.recvfrom(1024)
+            # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            # s.bind(('', 12345))
+            # m = s.recvfrom(1024)
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            s.bind(('169.254.164.144', 12357))
+            s.listen(0)
+            c, addr = s.accept()
+            m = c.recvfrom(1024)
+            print(m)
             if m[0].decode() == "a":
                 print("Recording Start")
                 break
