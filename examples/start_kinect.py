@@ -16,7 +16,6 @@ master_ip = "192.168.0.5"
 
 #my_ip = "169.254.164.143"
 my_ip = "192.168.0.5"
-vis = True
 
 
 
@@ -36,8 +35,12 @@ def stop_recording(PORT, shm_nm, nptype):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Processor collection')
     parser.add_argument('-i', '--index', dest="index", type=int, default = 0)
+    parser.add_argument('-v', '--vis', dest="vis", type=bool, default=False)
+    parser.add_argument('-l', '--litemodel', dest="litemodel", type=int, default=0)
     arg = parser.parse_args()
     index = arg.index
+    vis = arg.vis
+    lite_model = arg.litemodel
 
     send_port = 1144 + 100*index
     print(send_port)
@@ -71,7 +74,7 @@ if __name__ == "__main__":
     print("Kinect_" + format(index, "02") + " Ready")
 
     # Start body tracker
-    bodyTracker = pykinect.start_body_tracker(model_type=1, index=index)
+    bodyTracker = pykinect.start_body_tracker(model_type=lite_model, index=index)
     #model_type=pykinect.K4ABT_DEFAULT_MODEL
 
     joint_ = np.zeros((27 * 4,))
