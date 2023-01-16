@@ -207,7 +207,7 @@ K4ABT_LITE_MODEL = 1
 
 k4abt_tracker_default_configuration = k4abt_tracker_configuration_t()
 k4abt_tracker_default_configuration.sensor_orientation = K4ABT_SENSOR_ORIENTATION_DEFAULT
-k4abt_tracker_default_configuration.processing_mode = K4ABT_TRACKER_PROCESSING_MODE_GPU
+k4abt_tracker_default_configuration.processing_mode = 0
 k4abt_tracker_default_configuration.gpu_device_id = 0
 
 body_colors = np.ones((256,3), dtype=np.uint8)*K4ABT_BODY_INDEX_MAP_BACKGROUND

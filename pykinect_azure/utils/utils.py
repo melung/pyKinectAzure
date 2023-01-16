@@ -41,7 +41,7 @@ def get_k4abt_lite_model_path():
 
     # Check if it is a Linux system
     if platform.system().lower() == 'linux':
-        return None
+        return '/usr/bin/dnn_model_2_0_lite_op11.onnx'.encode('utf-8')
 
     # Return the Windows version
     return 'C:/Program Files/Azure Kinect Body Tracking SDK/sdk/windows-desktop/amd64/release/bin/dnn_model_2_0_lite_op11.onnx'.encode('utf-8')

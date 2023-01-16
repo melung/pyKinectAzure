@@ -18,6 +18,12 @@ def setup_library(module_k4abt_path):
 		print("Failed to load body tracker library", e)
 		sys.exit(1)
 
+	k4abt_tracker_default_configuration.processing_mode = 1
+	try:
+		ctypes.cdll.LoadLibrary("libonnxruntime_providers_cuda.so")
+	except Exception as e:
+		ctypes.cdll.LoadLibrary("libonnxruntime.so.1.10.0")
+
 def k4abt_tracker_create(sensor_calibration, config, tracker_handle):
 	"""
 	K4ABT_EXPORT k4a_result_t k4abt_tracker_create(const k4a_calibration_t* sensor_calibration,
